@@ -1,0 +1,16 @@
+name: test
+on:
+  push:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: '${{ matrix.os }}'
+    name: '${{ matrix.os }}'
+    steps:
+      - uses: denoland/setup-deno@v1
+      - run: |-
+          deno eval "Deno.exit(1)"
+          deno eval "Hello"
